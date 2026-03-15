@@ -38,6 +38,20 @@ This system can be used for:
 - Microservices
 - Event-driven communication
 
+## Documentation
+
+Detailed project documentation is available in the `/docs` folder.
+
+Current documents:
+
+- business rules
+- API design
+- database model
+- project roadmap
+- system architecture
+- entity relationship overview
+- LinkedIn content planning
+
 ## Project Status
 
 Planning and documentation phase.
