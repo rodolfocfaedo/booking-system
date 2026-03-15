@@ -1,0 +1,16 @@
+ext.pathMapper = [:]
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/util_rt.jar', '/tmp/s9I7Lq/util_rt.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/external-system-rt.jar', '/tmp/s9I7Lq/external-system-rt.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/plugins/gradle/lib/gradle-tooling-extension-api.jar', '/tmp/PhEPNs/gradle-tooling-extension-api.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/plugins/gradle/lib/gradle-tooling-extension-impl.jar', '/tmp/PhEPNs/gradle-tooling-extension-impl.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/util-8.jar', '/tmp/s9I7Lq/util-8.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/module-intellij.libraries.gson.jar', '/tmp/s9I7Lq/module-intellij.libraries.gson.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/module-intellij.libraries.guava.jar', '/tmp/s9I7Lq/module-intellij.libraries.guava.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/module-intellij.libraries.commons.lang3.jar', '/tmp/s9I7Lq/module-intellij.libraries.commons.lang3.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/trove.jar', '/tmp/s9I7Lq/trove.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/lib/opentelemetry.jar', '/tmp/s9I7Lq/opentelemetry.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/plugins/Kotlin/lib/kotlin-gradle-tooling.jar', '/tmp/2iPCZn/kotlin-gradle-tooling.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/plugins/compose-ide-plugin/lib/modules/intellij.compose.ide.plugin.gradleTooling.rt.jar', '/tmp/xZHb52/intellij.compose.ide.plugin.gradleTooling.rt.jar')
+ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2025.3.1/plugins/ktor/lib/ktor-gradle-tooling.jar', '/tmp/A7h7GF/ktor-gradle-tooling.jar')
+ext.pathMapper.put("<<target java executable path>>", '/usr/lib/jvm/java-21-openjdk-amd64/bin/java')
+ext.mapPath = { path -> pathMapper.get(path) ?: path }
