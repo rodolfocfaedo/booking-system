@@ -6,56 +6,28 @@ Backend API for managing reservations of resources such as meeting rooms, barber
 
 This project is being developed as a backend portfolio application to demonstrate best practices in Java and Spring Boot development.
 
-The goal is to evolve the system from a basic CRUD API into a more robust and production-oriented application, including authentication, validation rules, testing, containerization, and scalable architecture.
-
-## Possible Use Cases
-
-This system can be used for:
-
-- barbershop appointments
-- meeting room reservations
-- studio scheduling
-- coworking space bookings
-- equipment reservations
-
-## Planned Tech Stack
+## Tech Stack
 
 - Java 21
 - Spring Boot
-- Spring Data JPA
 - PostgreSQL
 - Gradle
 - OpenAPI / Swagger
-- Bean Validation
 
-## Future Improvements
+## Current Status
 
-- Spring Security + JWT
-- Pagination and filtering
-- Unit and integration tests
-- Docker and Docker Compose
-- CI/CD with GitHub Actions
-- Microservices
-- Event-driven communication
+Planning and documentation phase.
 
 ## Documentation
 
 Detailed project documentation is available in the `/docs` folder.
 
-Current documents:
+## Planned Evolution
 
-- business rules
-- API design
-- database model
-- project roadmap
-- system architecture
-- entity relationship overview
-- LinkedIn content planning
-
-## Project Status
-
-Planning and documentation phase.
-
-## Author
-
-Rodolfo
+- CRUD for resources and bookings
+- Business rule validation
+- Spring Security + JWT
+- Tests
+- Docker
+- CI/CD
+- Microservices
