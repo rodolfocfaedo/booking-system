@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.rodolfodev.booking-system' is invalid and this project uses 'com.rodolfodev.booking_system' instead.
+* The original package name 'com.rodolfodev.booking-system' is invalid and this project uses 'com.rodolfodev.bookingsystem' instead.
 
 # Getting Started
 
