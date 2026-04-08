@@ -1,5 +1,6 @@
 package com.rodolfodev.bookingsystem.service;
 
+import com.rodolfodev.bookingsystem.dto.BookingPatchDTO;
 import com.rodolfodev.bookingsystem.dto.request.BookingRequestDTO;
 import com.rodolfodev.bookingsystem.dto.response.BookingResponseDTO;
 import com.rodolfodev.bookingsystem.enums.BookingStatus;
@@ -7,6 +8,9 @@ import com.rodolfodev.bookingsystem.infrastructure.entities.Booking;
 import com.rodolfodev.bookingsystem.infrastructure.repositories.BookingRepository;
 import com.rodolfodev.bookingsystem.mapper.BookingMapper;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class BookingService {
@@ -19,12 +23,65 @@ public class BookingService {
         this.bookingMapper = bookingMapper;
     }
 
-    public BookingResponseDTO createBooking (BookingRequestDTO bookingRequestDTO){
-        if (bookingRequestDTO.endTime().isBefore(bookingRequestDTO.startTime())) {
-            throw new IllegalArgumentException("End time must be after start time");
+    public BookingResponseDTO createBooking(BookingRequestDTO bookingRequestDTO) {
+        LocalDateTime startTime = bookingRequestDTO.startTime();
+        LocalDateTime endTime = startTime.plusHours(1);
+        boolean hasConflict = bookingRepository.existsConflict(
+                startTime,
+                endTime,
+                BookingStatus.CANCELLED
+        );
+        if (hasConflict) {
+            throw new IllegalStateException("This time slot is already booked");
         }
         Booking entity = bookingMapper.toEntity(bookingRequestDTO);
+        entity.setStartTime(startTime);
+        entity.setEndTime(endTime);
         entity.setStatus(BookingStatus.PENDING);
         return bookingMapper.toResponse(bookingRepository.save(entity));
+    }
+
+    public BookingResponseDTO getBookingById(UUID id) {
+        Booking booking = bookingRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Id not found: " + id));
+        return bookingMapper.toResponse(booking);
+    }
+
+    public BookingResponseDTO patchBookingById(UUID id, BookingPatchDTO patchDTO) {
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+        if (patchDTO.service() != null && !patchDTO.service().isBlank()) {
+            booking.setService(patchDTO.service());
+        }
+        if (patchDTO.clientName() != null && !patchDTO.clientName().isBlank()) {
+            booking.setClientName(patchDTO.clientName());
+        }
+        if (patchDTO.clientPhone() != null && !patchDTO.clientPhone().isBlank()) {
+            booking.setClientPhone(patchDTO.clientPhone());
+        }
+        if (patchDTO.status() != null) {
+            booking.setStatus(patchDTO.status());
+        }
+        if (patchDTO.startTime() != null) {
+            LocalDateTime newStartTime = patchDTO.startTime();
+            LocalDateTime newEndTime = newStartTime.plusHours(1);
+            boolean hasConflict = bookingRepository.existsConflictExcludingCurrent(
+                    booking.getId(),
+                    newStartTime,
+                    newEndTime,
+                    BookingStatus.CANCELLED
+            );
+            if (hasConflict) {
+                throw new IllegalStateException("This time slot is already booked");
+            }
+            booking.setStartTime(newStartTime);
+            booking.setEndTime(newEndTime);
+        }
+        Booking updatedBooking = bookingRepository.save(booking);
+        return bookingMapper.toResponse(updatedBooking);
+    }
+
+    public void deleteBookingById(UUID id) {
+        bookingRepository.deleteById(id);
     }
 }

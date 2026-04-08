@@ -38,6 +38,9 @@ dependencies {
 // --- SPRING DOC ---
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
 
+//-- VALIDATION --
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 
 // --- TEST DEPENDENCIES ---
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
