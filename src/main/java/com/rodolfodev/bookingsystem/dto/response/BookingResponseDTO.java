@@ -1,34 +1,37 @@
 package com.rodolfodev.bookingsystem.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.rodolfodev.bookingsystem.enums.BookingStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record BookingResponseDTO(UUID id,
+@Schema(description = "Booking response returned by the API")
+public record BookingResponseDTO(
 
-                                 String service,
+        @Schema(description = "Booking UUID", example = "707589b7-5c22-4315-bc1d-103852806671")
+        UUID id,
 
-                                 @Schema(
-                                         example = "2026-04-08T21:39:30",
-                                         type = "string",
-                                         format = "date-time"
-                                 )
-                                 @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-                                 LocalDateTime startTime,
+        @Schema(description = "Service name", example = "Haircut")
+        String service,
 
-                                 @Schema(
-                                         example = "2026-04-08T21:39:30",
-                                         type = "string",
-                                         format = "date-time"
-                                 )
-                                 @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-                                 LocalDateTime endTime,
+        @Schema(description = "Booking start date and time", example = "2026-04-08T21:30:00")
+        LocalDateTime startTime,
 
-                                 String clientName,
+        @Schema(description = "Booking end date and time", example = "2026-04-08T22:30:00")
+        LocalDateTime endTime,
 
-                                 String clientPhone,
+        @Schema(description = "Client name", example = "Rodolfo")
+        String clientName,
 
-                                 LocalDateTime createdAt) {
+        @Schema(description = "Client phone number", example = "54999999999")
+        String clientPhone,
+
+        @Schema(description = "Booking status", example = "PENDING")
+        BookingStatus status,
+
+        @Schema(description = "Booking creation timestamp", example = "2026-04-08T18:35:10")
+        LocalDateTime createdAt
+) {
 }
