@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -63,6 +64,24 @@ public class BookingController {
             @PathVariable UUID id
     ) {
         return ResponseEntity.ok(bookingService.getBookingById(id));
+    }
+
+    @Operation(
+            summary = "Get all bookings",
+            description = """
+                Retrieves all bookings from the system.
+                
+                This endpoint returns a list containing all registered bookings,
+                including service, client information, booking time, status and creation date.
+                """
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Bookings retrieved successfully"
+    )
+    @GetMapping
+    public ResponseEntity<List<BookingResponseDTO>> getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAllBookings());
     }
 
     @Operation(
